@@ -1,0 +1,30 @@
+{
+  "name": "appstore-webhook-proxy",
+  "version": "1.0.0",
+  "description": "Proxy server that verifies App Store Connect webhooks and forwards them to Microsoft Teams.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "apple",
+    "webhook",
+    "appstore",
+    "proxy",
+    "teams"
+  ],
+  "author": "Yannis Alexiou",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.4",
+    "luxon": "^3.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

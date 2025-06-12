@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: appstore-webhook-proxy
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SHARED_SECRET
+        sync: false
+      - key: TEAMS_WEBHOOK_URL
+        sync: false
+      - key: APP_STORE_URL
+        sync: false
+      - key: TIMEZONE
+        sync: false

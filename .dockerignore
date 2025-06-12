@@ -1,0 +1,23 @@
+# Node modules and dependencies
+node_modules/
+npm-debug.log
+
+# Git
+.git
+.gitignore
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker artifacts
+docker-compose.yml
+Dockerfile
+
+# Logs
+logs/
+*.log

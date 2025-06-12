@@ -1,0 +1,32 @@
+# Node dependencies
+node_modules/
+
+# dotenv environment file
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# Optional build output
+dist/
+build/
