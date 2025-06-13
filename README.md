@@ -32,7 +32,8 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 
 ---
 
-## 📦 Installation Options
+## 📦 Installation Guides
+End-to-end simple installation guides, from installing the proxy to get the test message to MS Teams / Slack
 
 ### 💬 Microsoft Teams
 ![MS Teams Notification Screenshot](documentation/assets/TeamsAppStoreUpdateResponse.png)
@@ -44,8 +45,18 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 - Create a **Slack Incoming Webhook URL** from the [Slack API settings](https://api.slack.com/messaging/webhooks).
 - Set the resulting URL in `SLACK_WEBHOOK_URL`.
 
+---
 
-## 💪 Proxy manual installation
+## ✅ Supported Webhook Events
+- `appStoreVersionAppVersionStateUpdated`
+- `webhookPingCreated`
+
+Unknown events will still be delivered in raw JSON.
+
+---
+
+## 🔧 Proxy Setup Options
+Here you can find all the available options to run the proxy.
 
 ### 1. Manual Setup (Node.js)
 If you'd like to run the app directly with Node.js:
@@ -108,14 +119,6 @@ Then send a webhook POST to:
 ```
 http://localhost:3000/appstore-webhook
 ```
-
----
-
-## ✅ Supported Webhook Events
-- `appStoreVersionAppVersionStateUpdated`
-- `webhookPingCreated`
-
-Unknown events will still be delivered in raw JSON.
 
 ---
 
