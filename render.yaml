@@ -14,3 +14,5 @@ services:
         sync: false
       - key: TIMEZONE
         sync: false
+      - key: SLACK_WEBHOOK_URL
+        sync: false

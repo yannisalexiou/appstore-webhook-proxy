@@ -8,14 +8,14 @@
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-This project provides a simple, secure Node.js proxy to forward webhook events from **App Store Connect** to a **Microsoft Teams channel**, including signature verification and formatted messages.
-
+This project provides a simple, secure Node.js proxy to forward webhook events from **App Store Connect** to **Microsoft Teams** and/or **Slack**, including signature verification and platform-specific formatting.
 ---
 
 ## 🚀 Features
 
 - ✅ Verifies App Store webhook signatures using HMAC SHA-256
-- ✅ Forwards formatted messages to Microsoft Teams
+- ✅ Forwards formatted messages to Microsoft Teams and Slack
+- ✅ Custom message templates per platform
 - ✅ Supports custom timezones for event timestamps
 - ✅ Error handling and logging
 - ✅ Dockerized and ready for deployment (e.g. Render, Railway)
@@ -37,6 +37,10 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 - You must create an **Incoming Webhook** connector in your desired Teams channel.
 - Copy the generated webhook URL (from **Step 10** in the guide below) and set it in `TEAMS_WEBHOOK_URL`.
 - Official guide: [Create Incoming Webhook in Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet)
+
+### 💬 Slack
+- Create a **Slack Incoming Webhook URL** from the [Slack API settings](https://api.slack.com/messaging/webhooks).
+- Set the resulting URL in `SLACK_WEBHOOK_URL`.
 
 ---
 
@@ -67,7 +71,8 @@ Click below to deploy instantly to Render:
 Make sure to set the following environment variables during setup:
 - `SHARED_SECRET`
 - `TEAMS_WEBHOOK_URL`
-- `APP_STORE_URL` (optional, for linking)
+- `SLACK_WEBHOOK_URL`
+- `APP_STORE_URL` (optional)
 - `TIMEZONE` (e.g., Europe/Athens)
 
 > Render automatically sets `NODE_ENV=production`
@@ -81,6 +86,7 @@ Create a `.env` file (or set variables directly in your cloud environment):
 ```ini
 SHARED_SECRET=your_shared_secret
 TEAMS_WEBHOOK_URL=https://your-teams.webhook.url
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
 APP_STORE_URL=https://apps.apple.com/app/id123456789
 TIMEZONE=Europe/Athens
 ```
@@ -120,16 +126,18 @@ Unknown events will still be delivered in raw JSON.
 ├── routes/
 │   └── webhook.js         # Webhook handler
 ├── utils/
-│   ├── eventTemplates.js  # Message formatting
+│   ├── eventTemplates.js  # Teams formatter
+│   ├── slackTemplates.js  # Slack formatter
 │   └── stateDescriptions.js
 ├── services/
 │   ├── signatureVerifier.js
-│   └── teamsNotifier.js
+│   ├── teamsNotifier.js
+│   └── slackNotifier.js
 ├── middleware/
 │   ├── errorHandler.js
 │   └── logging.js
 ├── Dockerfile
-├── render.yaml            # Render one-click deploy spec
+├── render.yaml            # Render deploy spec
 ├── .env.example
 ├── .dockerignore
 ├── .gitignore
@@ -140,10 +148,10 @@ Unknown events will still be delivered in raw JSON.
 
 ## 💡 Contributing
 
-Feel free to open issues or submit PRs for:
-- More event types
-- Slack integration
-- Status dashboards
+PRs and feedback welcome! You can help with:
+- More supported event types
+- Custom Slack/Teams formatting
+- Delivery logs and retry support
 
 ---
 
