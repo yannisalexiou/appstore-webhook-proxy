@@ -34,11 +34,13 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
   - [Webhook Permissions Guide](https://developer.apple.com/help/app-store-connect/manage-your-team/manage-webhooks)
 
 ### 💬 Microsoft Teams
+![MS Teams Notification Screenshot](documentation/assets/TeamsAppStoreUpdateResponse.png)
 - You must create an **Incoming Webhook** connector in your desired Teams channel.
 - Copy the generated webhook URL (from **Step 10** in the guide below) and set it in `TEAMS_WEBHOOK_URL`.
 - Official guide: [Create Incoming Webhook in Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet)
 
 ### 💬 Slack
+![Slack Notification Screenshot](documentation/assets/SlackAppStoreUpdateResponse.png)
 - Create a **Slack Incoming Webhook URL** from the [Slack API settings](https://api.slack.com/messaging/webhooks).
 - Set the resulting URL in `SLACK_WEBHOOK_URL`.
 
