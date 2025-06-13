@@ -5,33 +5,32 @@ const { sendToTeams } = require("../services/teamsNotifier");
 const { sendToSlack } = require("../services/slackNotifier");
 
 const SHARED_SECRET = process.env.SHARED_SECRET;
+const TEAMS_WEBHOOK_URL = process.env.TEAMS_WEBHOOK_URL;
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 
-router.post("/", async (req, res) => {
-  const signature = req.headers["x-apple-notification-signature"];
-  const rawBody = JSON.stringify(req.body);
+router.post("/", async (req, res, next) => {
+  const rawBody = req.rawBody;
+  const signatureHeader = req.headers["x-apple-signature"];
 
-  // 🔒 Verify App Store signature
-  if (!verifyAppleSignature(rawBody, signature, SHARED_SECRET)) {
+  if (!verifyAppleSignature(rawBody, signatureHeader, SHARED_SECRET)) {
+    console.warn("❌ Invalid signature");
     return res.status(401).send("Invalid signature");
   }
 
-  const payload = req.body;
-
   try {
-    // 📤 Send to Microsoft Teams (if webhook is configured)
-    if (process.env.TEAMS_WEBHOOK_URL) {
-      await sendToTeams(payload, process.env.TEAMS_WEBHOOK_URL);
+    const payload = JSON.parse(rawBody);
+
+    if (TEAMS_WEBHOOK_URL) {
+      await sendToTeams(payload, TEAMS_WEBHOOK_URL);
     }
 
-    // 📤 Send to Slack (if webhook is configured)
-    if (process.env.SLACK_WEBHOOK_URL) {
-      await sendToSlack(payload, process.env.SLACK_WEBHOOK_URL);
+    if (SLACK_WEBHOOK_URL) {
+      await sendToSlack(payload, SLACK_WEBHOOK_URL);
     }
 
-    return res.status(200).send("OK");
-  } catch (error) {
-    console.error("❌ Error handling webhook:", error);
-    return res.status(500).send("Internal Server Error");
+    res.status(200).send("Forwarded to Teams/Slack");
+  } catch (err) {
+    next(err);
   }
 });
 
