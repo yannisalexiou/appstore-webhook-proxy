@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen)
 ![Docker Ready](https://img.shields.io/badge/docker-ready-blue)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
 ![Slack Integration](https://img.shields.io/badge/slack-supported-4A154B?logo=slack&logoColor=white)
 ![MS Teams Integration](https://img.shields.io/badge/teams-supported-6264A7?logo=microsoft-teams&logoColor=white)
@@ -32,7 +33,7 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 - You must have one of the following roles: **Account Holder**, **Admin**, or **App Manager** to create a webhook.
 - When setting up the webhook in App Store Connect, Apple will ask for a **secret**. Use a string of your choice and set it in `SHARED_SECRET`.
 - Official docs:
-  - [Apple Webhook Notification Overview](https://developer.apple.com/documentation/AppStoreConnectAPI/webhook-notifications)
+  - [Apple Webhook Notification Overview]()https://developer.apple.com/documentation/AppStoreConnectAPI/webhook-notifications
   - [Configuring Webhook Notifications](https://developer.apple.com/documentation/appstoreconnectapi/configuring-webhook-notifications)
   - [Webhook Permissions Guide](https://developer.apple.com/help/app-store-connect/manage-your-team/manage-webhooks)
 
@@ -41,6 +42,9 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 - You must create an **Incoming Webhook** connector in your desired Teams channel.
 - Copy the generated webhook URL (from **Step 10** in the guide below) and set it in `TEAMS_WEBHOOK_URL`.
 - Official guide: [Create Incoming Webhook in Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet)
+- **📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Microsoft Teams (Medium)](https://medium.com/p/af3c8c840c15)
+
+G
 
 ### 💬 Slack
 ![Slack Notification Screenshot](documentation/assets/SlackAppStoreUpdateResponse.png)
