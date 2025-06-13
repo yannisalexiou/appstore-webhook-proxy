@@ -27,14 +27,12 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 ---
 
 ## 📋 Prerequisites
+1. App Store Connect access with one of the following roles: **Account Holder**, **Admin**, or **App Manager** to create a webhook.
+2. A configured workspace in either: Microsoft Teams and/or Slack
 
-### 🔐 App Store Connect
-- You must have one of the following roles: **Account Holder**, **Admin**, or **App Manager** to create a webhook.
-- When setting up the webhook in App Store Connect, Apple will ask for a **secret**. Use a string of your choice and set it in `SHARED_SECRET`.
-- Official docs:
-  - [Apple Webhook Notification Overview]()https://developer.apple.com/documentation/AppStoreConnectAPI/webhook-notifications
-  - [Configuring Webhook Notifications](https://developer.apple.com/documentation/appstoreconnectapi/configuring-webhook-notifications)
-  - [Webhook Permissions Guide](https://developer.apple.com/help/app-store-connect/manage-your-team/manage-webhooks)
+---
+
+## 📦 Installation Options
 
 ### 💬 Microsoft Teams
 ![MS Teams Notification Screenshot](documentation/assets/TeamsAppStoreUpdateResponse.png)
@@ -46,9 +44,8 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 - Create a **Slack Incoming Webhook URL** from the [Slack API settings](https://api.slack.com/messaging/webhooks).
 - Set the resulting URL in `SLACK_WEBHOOK_URL`.
 
----
 
-## 📦 Installation Options
+## 💪 Proxy manual installation
 
 ### 1. Manual Setup (Node.js)
 If you'd like to run the app directly with Node.js:
@@ -119,6 +116,16 @@ http://localhost:3000/appstore-webhook
 - `webhookPingCreated`
 
 Unknown events will still be delivered in raw JSON.
+
+---
+
+## 🔐 Usefull App Store Connect info:
+- When setting up the webhook in App Store Connect, Apple will ask for a **secret**. Use a string of your choice and set it in `SHARED_SECRET`.
+- Official docs:
+  - [Apple Webhook Notification Overview]()https://developer.apple.com/documentation/AppStoreConnectAPI/webhook-notifications
+  - [Configuring Webhook Notifications](https://developer.apple.com/documentation/appstoreconnectapi/configuring-webhook-notifications)
+  - [Webhook Permissions Guide](https://developer.apple.com/help/app-store-connect/manage-your-team/manage-webhooks)
+
 
 ---
 
