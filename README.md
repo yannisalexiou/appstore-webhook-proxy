@@ -1,4 +1,4 @@
-# App Store Webhook Proxy for Microsoft Teams
+# App Store Webhook Proxy for Microsoft Teams & Slack
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen)
