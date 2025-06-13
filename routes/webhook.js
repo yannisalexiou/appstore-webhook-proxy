@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
   const rawBody = JSON.stringify(req.body);
 
   // 🔒 Verify App Store signature
-  if (!verifyAppleSignature(rawBody, signatureHeader, SHARED_SECRET)) {
+  if (!verifyAppleSignature(rawBody, signature, SHARED_SECRET)) {
     return res.status(401).send("Invalid signature");
   }
 
