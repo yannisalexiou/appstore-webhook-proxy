@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { verifySignature } = require("../services/signatureVerifier");
+const { verifyAppleSignature } = require("../services/signatureVerifier");
 const { sendToTeams } = require("../services/teamsNotifier");
 const { sendToSlack } = require("../services/slackNotifier");
+
+const SHARED_SECRET = process.env.SHARED_SECRET;
 
 router.post("/", async (req, res) => {
   const signature = req.headers["x-apple-notification-signature"];
   const rawBody = JSON.stringify(req.body);
 
   // 🔒 Verify App Store signature
-  if (!verifySignature(signature, rawBody)) {
+  if (!verifyAppleSignature(rawBody, signatureHeader, SHARED_SECRET)) {
     return res.status(401).send("Invalid signature");
   }
 
