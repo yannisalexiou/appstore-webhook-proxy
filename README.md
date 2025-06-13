@@ -4,6 +4,8 @@
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen)
 ![Docker Ready](https://img.shields.io/badge/docker-ready-blue)
 
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%E2%98%95-blue)](coff.ee/alexiou)
+
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
 This project provides a simple, secure Node.js proxy to forward webhook events from **App Store Connect** to a **Microsoft Teams channel**, including signature verification and formatted messages.
