@@ -25,7 +25,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
-            ghcr.io/${{ github.repository }}:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/appstore-webhook-proxy:${{ github.ref_name }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/appstore-webhook-proxy:latest
+            ghcr.io/yannisalexiou/appstore-webhook-proxy:${{ github.ref_name }}
+            ghcr.io/yannisalexiou/appstore-webhook-proxy:latest
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/appstore-webhook-proxy:${{ github.ref_name }}
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/appstore-webhook-proxy:latest
