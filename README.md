@@ -42,8 +42,7 @@ End-to-end simple installation guides, from installing the proxy to get the test
 
 ### 💬 Slack
 ![Slack Notification Screenshot](documentation/assets/SlackAppStoreUpdateResponse.png)
-- Create a **Slack Incoming Webhook URL** from the [Slack API settings](https://api.slack.com/messaging/webhooks).
-- Set the resulting URL in `SLACK_WEBHOOK_URL`.
+**📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Slack (Medium)](https://medium.com/p/4785b8306c81)
 
 ---
 
