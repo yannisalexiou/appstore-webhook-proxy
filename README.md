@@ -42,6 +42,7 @@ End-to-end simple installation guides, from installing the proxy to get the test
 
 ### 💬 Slack
 ![Slack Notification Screenshot](documentation/assets/SlackAppStoreUpdateResponse.png)
+
 **📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Slack (Medium)](https://medium.com/p/4785b8306c81)
 
 ---
