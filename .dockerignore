@@ -21,3 +21,12 @@ Dockerfile
 # Logs
 logs/
 *.log
+
+# Ignore docs and screenshots
+documentation/
+*.md
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
