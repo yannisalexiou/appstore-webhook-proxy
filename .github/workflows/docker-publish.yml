@@ -9,21 +9,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: docker/setup-buildx-action@v2
-      - uses: docker/login-action@v2
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/login-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
         with:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build & Push Image
+
+      - name: Build and Push Docker Images
         uses: docker/build-push-action@v4
         with:
-          platforms: linux/amd64,linux/arm64
+          context: .
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/yannisalexiou/appstore-webhook-proxy:${{ github.ref_name }}
             ghcr.io/yannisalexiou/appstore-webhook-proxy:latest
