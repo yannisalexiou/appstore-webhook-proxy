@@ -95,13 +95,14 @@ Make sure to set the following environment variables during setup:
 
 Create a `.env` file (or set variables directly in your cloud environment):
 
-```ini
-SHARED_SECRET=your_shared_secret
-TEAMS_WEBHOOK_URL=https://your-teams.webhook.url
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
-APP_STORE_URL=https://apps.apple.com/app/id123456789
-TIMEZONE=Europe/Athens
-```
+| Variable            | Explanation                                                                                                 | Default Value                                 |
+|---------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| `SHARED_SECRET`     | Secret used to verify incoming App Store Webhook requests. Set this value in App Store Connect and paste it here. | `your_shared_secret`                          |
+| `TEAMS_WEBHOOK_URL` | Webhook URL for posting notifications to Microsoft Teams. Required if integrating with Teams; otherwise leave empty. Example: `https://your-teams.webhook.url` | *(empty)* |
+| `SLACK_WEBHOOK_URL` | Webhook URL for posting notifications to Slack. Required if integrating with Slack; otherwise leave empty. Example: `https://hooks.slack.com/services/XXX/YYY/ZZZ` | *(empty)* |
+| `APP_STORE_URL`     | *(Optional)* Public URL of your app on the App Store. Included in notification messages.                     | `https://apps.apple.com/app/id123456789`      |
+| `TIMEZONE`          | Timezone used to format timestamps in messages. Use a valid IANA timezone name (e.g. `Europe/Athens`).       | `UTC`                                         |
+
 
 You can also copy from the example:
 ```bash
