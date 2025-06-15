@@ -95,13 +95,15 @@ Make sure to set the following environment variables during setup:
 
 Create a `.env` file (or set variables directly in your cloud environment):
 
-| Variable            | Explanation                                                                                                 | Default Value                                 |
-|---------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| `SHARED_SECRET`     | Secret used to verify incoming App Store Webhook requests. Set this value in App Store Connect and paste it here. | `your_shared_secret`                          |
-| `TEAMS_WEBHOOK_URL` | Webhook URL for posting notifications to Microsoft Teams. Required if integrating with Teams; otherwise leave empty. Example: `https://your-teams.webhook.url` | *(empty)* |
-| `SLACK_WEBHOOK_URL` | Webhook URL for posting notifications to Slack. Required if integrating with Slack; otherwise leave empty. Example: `https://hooks.slack.com/services/XXX/YYY/ZZZ` | *(empty)* |
-| `APP_STORE_URL`     | *(Optional)* Public URL of your app on the App Store. Included in notification messages.                     | `https://apps.apple.com/app/id123456789`      |
-| `TIMEZONE`          | Timezone used to format timestamps in messages. Use a valid IANA timezone name (e.g. `Europe/Athens`).       | `UTC`                                         |
+| Variable            | Explanation                                                                                                                                                                                                 | Default Value |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| `SHARED_SECRET`     | **Required.** Secret used to verify incoming App Store Webhook requests. You define it when creating the webhook in App Store Connect, then set the same value here.<br>Set it here: [App Store Webhooks Setup](https://appstoreconnect.apple.com/access/integrations/webhooks) | *(empty)*     |
+| `TEAMS_WEBHOOK_URL` | **Required if integrating with Microsoft Teams.** Webhook URL for sending notifications to Microsoft Teams. Leave empty if not used.<br>Example: `https://your-teams.webhook.url`<br>Create it here: [Microsoft Teams Incoming Webhook Guide](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet) | *(empty)*     |
+| `SLACK_WEBHOOK_URL` | **Required if integrating with Slack.** Webhook URL for sending notifications to Slack. Leave empty if not used.<br>Example: `https://hooks.slack.com/services/XXX/YYY/ZZZ`<br>Create it here: [Slack Webhook Guide](https://api.slack.com/messaging/webhooks) | *(empty)*     |
+| `APP_STORE_URL`     | *(Optional)* Public URL of your app on the App Store. Included in notifications to make it easier to access the app’s page.<br>Example: `https://apps.apple.com/app/id123456789` | *(empty)*     |
+| `TIMEZONE`          | *(Optional)* Timezone used to format timestamps in messages. Use a valid [IANA timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Europe/Athens`. | `UTC`         |
+
+
 
 
 You can also copy from the example:
