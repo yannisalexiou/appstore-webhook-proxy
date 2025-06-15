@@ -80,13 +80,7 @@ Click below to deploy instantly to Render:
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-Make sure to set the following environment variables during setup:
-- `SHARED_SECRET`
-- `TEAMS_WEBHOOK_URL`
-- `SLACK_WEBHOOK_URL`
-- `APP_STORE_URL` (optional)
-- `TIMEZONE` (e.g., Europe/Athens)
-
+Make sure to set the environment variables during setup (Read the Environment Variables table below).
 > Render automatically sets `NODE_ENV=production`
 
 ---
