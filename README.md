@@ -59,7 +59,7 @@ Unknown events will still be delivered in raw JSON.
 ## 🔧 Proxy Setup Options
 Here you can find all the available options to run the proxy.
 
-⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the [1. One-Click Render Deployment](?tab=readme-ov-file#3-one-click-render-deployment) option, which provides a public domain automatically.
+⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the [1. One-Click Render Deployment](#3-one-click-render-deployment) option, which provides a public domain automatically.
 
 **The incoming webhook should be sent to the path: `/appstore-webhook`.**
 
@@ -68,7 +68,7 @@ Click below to deploy instantly to Render:
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-Make sure to set the environment variables during setup [(Read the Environment Variables table below)](?tab=readme-ov-file#%EF%B8%8F-environment-variables).
+Make sure to set the environment variables during setup [(Read the Environment Variables table below)](#%EF%B8%8F-environment-variables).
 > Render automatically sets `NODE_ENV=production`
 
 ### 2. Unraid Setup
