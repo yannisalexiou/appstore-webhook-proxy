@@ -2,7 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen)
-![Docker Ready](https://img.shields.io/badge/docker-ready-blue)
+
+[![Docker Ready](https://img.shields.io/badge/docker-ready-blue)](https://hub.docker.com/r/yannisalexiou/appstore-webhook-proxy)
+[![Render Ready](https://img.shields.io/badge/Render-Ready-8A06FF?style=flat&logo=render&logoSize=auto)](https://render.com/deploy)
 [![Unraid Ready](https://img.shields.io/badge/Unraid-Ready-f15a2c?style=flat&logo=unraid&logoSize=auto)](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/)
 
 ![Slack Integration](https://img.shields.io/badge/slack-supported-4A154B?logo=slack&logoColor=white)
@@ -59,20 +61,27 @@ Unknown events will still be delivered in raw JSON.
 ## 🔧 Proxy Setup Options
 Here you can find all the available options to run the proxy.
 
-⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the `3. One-Click Render Deployment` option, which provides a public domain automatically.
+⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the [1. One-Click Render Deployment](?tab=readme-ov-file#3-one-click-render-deployment) option, which provides a public domain automatically.
 
 **The incoming webhook should be sent to the path: `/appstore-webhook`.**
 
-### 1. Manual Setup (Node.js)
-If you'd like to run the app directly with Node.js:
+### 1. One-Click Render Deployment
+Click below to deploy instantly to Render:
 
-```bash
-git clone https://github.com/yourusername/appstore-webhook-proxy.git
-cd appstore-webhook-proxy
-npm install
-```
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-### 2. Docker Setup
+Make sure to set the environment variables during setup [(Read the Environment Variables table below)](?tab=readme-ov-file#%EF%B8%8F-environment-variables).
+> Render automatically sets `NODE_ENV=production`
+
+### 2. Unraid Setup
+To install via Unraid:
+
+1. Open the **Apps** tab in your Unraid dashboard.
+2. Search for:  
+   **`AppStore-Webhook-Proxy`**
+3. Click **Install** and configure the required environment variables.
+
+### 3. Docker Setup
 Build and run using Docker:
 
 ```bash
@@ -80,21 +89,14 @@ docker build -t appstore-webhook-proxy .
 docker run -p 3000:3000 --env-file .env appstore-webhook-proxy
 ```
 
-### 3. One-Click Render Deployment
-Click below to deploy instantly to Render:
+### 4. Manual Setup (Node.js)
+If you'd like to run the app directly with Node.js:
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
-
-Make sure to set the environment variables during setup (Read the Environment Variables table below).
-> Render automatically sets `NODE_ENV=production`
-
-### 4. Unraid Setup
-To install via Unraid:
-
-1. Open the **Apps** tab in your Unraid dashboard.
-2. Search for:  
-   **`AppStore-Webhook-Proxy`**
-3. Click **Install** and configure the required environment variables.
+```bash
+git clone https://github.com/yourusername/appstore-webhook-proxy.git
+cd appstore-webhook-proxy
+npm install
+```
 
 💬 **Need help or want to leave feedback?**  
 Join the support thread in the [Unraid Community Forum](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/).
