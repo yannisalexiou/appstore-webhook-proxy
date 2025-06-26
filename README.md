@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen)
 ![Docker Ready](https://img.shields.io/badge/docker-ready-blue)
-[![Unraid](https://img.shields.io/badge/Unraid-ready-4C1?style=for-the-badge&logo=unraid&logoColor=white)](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/)
+[![Unraid Ready](https://img.shields.io/badge/Unraid-Ready-f15a2c?style=flat&logo=unraid&logoSize=auto)](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/)
 
 ![Slack Integration](https://img.shields.io/badge/slack-supported-4A154B?logo=slack&logoColor=white)
 ![MS Teams Integration](https://img.shields.io/badge/teams-supported-6264A7?logo=microsoft-teams&logoColor=white)
