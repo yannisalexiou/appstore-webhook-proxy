@@ -3,11 +3,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-brightgreen)
 ![Docker Ready](https://img.shields.io/badge/docker-ready-blue)
+[![Unraid](https://img.shields.io/badge/Unraid-ready-4C1?style=for-the-badge&logo=unraid&logoColor=white)](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/)
 
 ![Slack Integration](https://img.shields.io/badge/slack-supported-4A154B?logo=slack&logoColor=white)
 ![MS Teams Integration](https://img.shields.io/badge/teams-supported-6264A7?logo=microsoft-teams&logoColor=white)
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%E2%98%95-blue)](coff.ee/alexiou)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%E2%98%95-blue)](https://coff.ee/alexiou)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
@@ -58,6 +59,10 @@ Unknown events will still be delivered in raw JSON.
 ## 🔧 Proxy Setup Options
 Here you can find all the available options to run the proxy.
 
+⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the `3. One-Click Render Deployment` option, which provides a public domain automatically.
+
+**The incoming webhook should be sent to the path: `/appstore-webhook`.**
+
 ### 1. Manual Setup (Node.js)
 If you'd like to run the app directly with Node.js:
 
@@ -82,6 +87,21 @@ Click below to deploy instantly to Render:
 
 Make sure to set the environment variables during setup (Read the Environment Variables table below).
 > Render automatically sets `NODE_ENV=production`
+
+### 4. Unraid Setup
+To install via Unraid:
+
+1. Open the **Apps** tab in your Unraid dashboard.
+2. Search for:  
+   **`AppStore-Webhook-Proxy`**
+3. Click **Install** and configure the required environment variables.
+
+💬 **Need help or want to leave feedback?**  
+Join the support thread in the [Unraid Community Forum](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/).
+
+🎥 **Watch the setup walkthrough:**  
+[![Watch the video](https://img.youtube.com/vi/g_EBC1CdblE/0.jpg)](https://www.youtube.com/watch?v=g_EBC1CdblE)
+
 
 ---
 
