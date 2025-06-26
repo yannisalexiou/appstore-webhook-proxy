@@ -59,7 +59,7 @@ Unknown events will still be delivered in raw JSON.
 ## 🔧 Proxy Setup Options
 Here you can find all the available options to run the proxy.
 
-⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the [1. One-Click Render Deployment](#3-one-click-render-deployment) option, which provides a public domain automatically.
+⚠️ To make the proxy work, it must be accessible from the internet. In my Unraid setup, I use an NGINX reverse proxy. If you're not familiar with this, it's easier to use the [1. One-Click Render Deployment](#1-one-click-render-deployment) option, which provides a public domain automatically.
 
 **The incoming webhook should be sent to the path: `/appstore-webhook`.**
 
@@ -79,6 +79,12 @@ To install via Unraid:
    **`AppStore-Webhook-Proxy`**
 3. Click **Install** and configure the required environment variables.
 
+💬 **Need help or want to leave feedback?**  
+Join the support thread in the [Unraid Community Forum](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/).
+
+🎥 **Watch the setup walkthrough:**  
+[![Watch the video](https://img.youtube.com/vi/g_EBC1CdblE/0.jpg)](https://www.youtube.com/watch?v=g_EBC1CdblE)
+
 ### 3. Docker Setup
 Build and run using Docker:
 
@@ -95,13 +101,6 @@ git clone https://github.com/yourusername/appstore-webhook-proxy.git
 cd appstore-webhook-proxy
 npm install
 ```
-
-💬 **Need help or want to leave feedback?**  
-Join the support thread in the [Unraid Community Forum](https://forums.unraid.net/topic/191280-support-yannisalexiou-app-store-webhook-proxy/).
-
-🎥 **Watch the setup walkthrough:**  
-[![Watch the video](https://img.youtube.com/vi/g_EBC1CdblE/0.jpg)](https://www.youtube.com/watch?v=g_EBC1CdblE)
-
 
 ---
 
