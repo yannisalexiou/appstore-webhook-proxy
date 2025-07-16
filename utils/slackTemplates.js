@@ -99,7 +99,7 @@ function buildSlackMessage(payload) {
     webhookPings: () => null,
 
     betaFeedbackScreenshotSubmissionCreated: () => {
-      const feedbackId = payload.relationships.instance.data.id;
+      const feedbackId = payload.data.relationships?.instance?.data?.id;
       const timestamp = formatTimestamp(payload.data.attributes.timestamp);
 
       const adamId = process.env.APP_ADAM_ID;
