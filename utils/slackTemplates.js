@@ -99,7 +99,7 @@ function buildSlackMessage(payload) {
     webhookPings: () => null,
 
     betaFeedbackScreenshotSubmissionCreated: () => {
-      const feedbackId = payload.data.id;
+      const feedbackId = payload.relationships.instance.data.id;
       const timestamp = formatTimestamp(payload.data.attributes.timestamp);
 
       const adamId = process.env.APP_ADAM_ID;
@@ -108,7 +108,9 @@ function buildSlackMessage(payload) {
 
       const elements = [];
 
-      if (adamId) {
+      const isValidFeedbackId = typeof feedbackId === "string" && feedbackId.trim() !== "";
+
+      if (isValidFeedbackId && adamId) {
         const webLink = `https://appstoreconnect.apple.com/apps/${adamId}/testflight/screenshots/${feedbackId}`;
         elements.push({
           type: "mrkdwn",
@@ -116,7 +118,7 @@ function buildSlackMessage(payload) {
         });
       }
 
-      if (adamId && bundleId && platformId) {
+      if (isValidFeedbackId && adamId && bundleId && platformId) {
         const xcodeLink = `xcode://organizer/feedback/downloadFeedback?adamId=${adamId}&feedbackId=${feedbackId}&bundleId=${bundleId}&platformId=${platformId}&userAgent=appStoreConnect`;
         elements.push({
           type: "mrkdwn",
