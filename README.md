@@ -34,7 +34,9 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 ---
 
 ## 📦 Installation Guides
-End-to-end simple installation guides, from installing the proxy to get the test message to MS Teams / Slack
+End-to-end simple installation guides, from installing the proxy to get the test message to MS Teams / Slack.
+
+> 💡 To enable full support for TestFlight feedback (including deep links to App Store Connect and Xcode Organizer), make sure to set the following environment variables: `APP_ADAM_ID`, `APP_BUNDLE_ID`, and `APP_PLATFORM_ID`.
 
 ### 💬 Microsoft Teams
 ![MS Teams App Store Notification Screenshot](documentation/assets/TeamsAppStoreUpdateResponse.png)
@@ -123,7 +125,6 @@ Create a `.env` file (or set variables directly in your cloud environment):
 | `APP_ADAM_ID`        | *(Optional – Used for TestFlight feedback).* The App Store Connect "adamId" of your app. Required to generate links to App Store Connect and Xcode Organizer in TestFlight screenshot feedback messages. | *(empty)*     |
 | `APP_BUNDLE_ID`      | *(Optional – Used for TestFlight feedback).* The bundle identifier of your app (e.g. `com.company.app`). Required to generate Xcode Organizer links for TestFlight screenshot feedback. | *(empty)*     |
 | `APP_PLATFORM_ID`    | *(Optional – Used for TestFlight feedback).* The App Store Connect platform ID (e.g. `iOS`). Required to generate Xcode Organizer links for TestFlight screenshot feedback. | *(empty)*     |
-
 
 
 
