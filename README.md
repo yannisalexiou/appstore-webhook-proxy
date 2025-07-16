@@ -37,20 +37,25 @@ This project provides a simple, secure Node.js proxy to forward webhook events f
 End-to-end simple installation guides, from installing the proxy to get the test message to MS Teams / Slack
 
 ### 💬 Microsoft Teams
-![MS Teams Notification Screenshot](documentation/assets/TeamsAppStoreUpdateResponse.png)
+![MS Teams App Store Notification Screenshot](documentation/assets/TeamsAppStoreUpdateResponse.png)
 
 **📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Microsoft Teams (Medium)](https://medium.com/p/af3c8c840c15)
+
+![MS Teams TestFlight Screenshot Notification](documentation/assets/TeamsTestFlightFeedbackScreenshot.png)
 
 ### 💬 Slack
 ![Slack Notification Screenshot](documentation/assets/SlackAppStoreUpdateResponse.png)
 
 **📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Slack (Medium)](https://medium.com/p/4785b8306c81)
 
+![Slack TestFlight Screenshot Notification](documentation/assets/SlackTestFlightFeedbackScreenshot.png)
+
 ---
 
 ## ✅ Supported Webhook Events
 - `appStoreVersionAppVersionStateUpdated`
 - `webhookPingCreated`
+- `betaFeedbackScreenshotSubmissionCreated`
 
 Unknown events will still be delivered in raw JSON.
 
@@ -115,6 +120,9 @@ Create a `.env` file (or set variables directly in your cloud environment):
 | `SLACK_WEBHOOK_URL` | **Required if integrating with Slack.** Webhook URL for sending notifications to Slack. Leave empty if not used.<br>Example: `https://hooks.slack.com/services/XXX/YYY/ZZZ`<br>Create it here: [Slack Webhook Guide](https://api.slack.com/messaging/webhooks) | *(empty)*     |
 | `APP_STORE_URL`     | *(Optional)* Public URL of your app on the App Store. Included in notifications to make it easier to access the app’s page.<br>Example: `https://apps.apple.com/app/id123456789` | *(empty)*     |
 | `TIMEZONE`          | *(Optional)* Timezone used to format timestamps in messages. Use a valid [IANA timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Europe/Athens`. | `UTC`         |
+| `APP_ADAM_ID`        | *(Optional – Used for TestFlight feedback).* The App Store Connect "adamId" of your app. Required to generate links to App Store Connect and Xcode Organizer in TestFlight screenshot feedback messages. | *(empty)*     |
+| `APP_BUNDLE_ID`      | *(Optional – Used for TestFlight feedback).* The bundle identifier of your app (e.g. `com.company.app`). Required to generate Xcode Organizer links for TestFlight screenshot feedback. | *(empty)*     |
+| `APP_PLATFORM_ID`    | *(Optional – Used for TestFlight feedback).* The App Store Connect platform ID (e.g. `iOS`). Required to generate Xcode Organizer links for TestFlight screenshot feedback. | *(empty)*     |
 
 
 
