@@ -67,6 +67,47 @@ function buildTeamsMessage(payload) {
     }),
 
     webhookPings: () => null,
+
+    betaFeedbackScreenshotSubmissionCreated: () => {
+      const feedbackId = payload.data.id;
+      const timestamp = formatTimestamp(payload.data.attributes.timestamp);
+
+      const adamId = process.env.APP_ADAM_ID;
+      const bundleId = process.env.APP_BUNDLE_ID;
+      const platformId = process.env.APP_PLATFORM_ID;
+
+      const facts = [
+        {
+          name: "🆔 Screenshot ID",
+          value: `\`${feedbackId}\``,
+        },
+        {
+          name: "⏱️ Timestamp",
+          value: timestamp,
+        },
+      ];
+
+      if (adamId) {
+        const webLink = `https://appstoreconnect.apple.com/apps/${adamId}/testflight/screenshots/${feedbackId}`;
+        facts.push({
+          name: "🌐 View in App Store Connect",
+          value: `[Open Link](${webLink})`,
+        });
+      }
+
+      if (adamId && bundleId && platformId) {
+        const xcodeLink = `xcode://organizer/feedback/downloadFeedback?adamId=${adamId}&feedbackId=${feedbackId}&bundleId=${bundleId}&platformId=${platformId}&userAgent=appStoreConnect`;
+        facts.push({
+          name: "💻 Open in Xcode Organizer",
+          value: `[Open in Xcode](${xcodeLink})`,
+        });
+      }
+
+      return {
+        title: "🧪 TestFlight Feedback Screenshot Submitted",
+        facts,
+      };
+    },
   };
 
   const template = events[type]?.() ?? {

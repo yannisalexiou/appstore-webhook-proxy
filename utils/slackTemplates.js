@@ -97,6 +97,66 @@ function buildSlackMessage(payload) {
     }),
 
     webhookPings: () => null,
+
+    betaFeedbackScreenshotSubmissionCreated: () => {
+      const feedbackId = payload.data.id;
+      const timestamp = formatTimestamp(payload.data.attributes.timestamp);
+
+      const adamId = process.env.APP_ADAM_ID;
+      const bundleId = process.env.APP_BUNDLE_ID;
+      const platformId = process.env.APP_PLATFORM_ID;
+
+      const elements = [];
+
+      if (adamId) {
+        const webLink = `https://appstoreconnect.apple.com/apps/${adamId}/testflight/screenshots/${feedbackId}`;
+        elements.push({
+          type: "mrkdwn",
+          text: `🌐 <${webLink}|View in App Store Connect>`,
+        });
+      }
+
+      if (adamId && bundleId && platformId) {
+        const xcodeLink = `xcode://organizer/feedback/downloadFeedback?adamId=${adamId}&feedbackId=${feedbackId}&bundleId=${bundleId}&platformId=${platformId}&userAgent=appStoreConnect`;
+        elements.push({
+          type: "mrkdwn",
+          text: `💻 <${xcodeLink}|Open in Xcode Organizer>`,
+        });
+      }
+
+      const blocks = [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "🧪 TestFlight Feedback Screenshot Submitted",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: `*Screenshot ID:*\n\`${feedbackId}\``,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Timestamp:*\n${timestamp}`,
+            },
+          ],
+        },
+      ];
+
+      if (elements.length > 0) {
+        blocks.push({
+          type: "context",
+          elements,
+        });
+      }
+
+      return { blocks };
+    },
   };
 
   const template = events[type]?.() ?? {
