@@ -87,7 +87,9 @@ function buildTeamsMessage(payload) {
         },
       ];
 
-      if (adamId) {
+      const isValidFeedbackId = typeof feedbackId === "string" && feedbackId.trim() !== "";
+
+      if (isValidFeedbackId && adamId) {
         const webLink = `https://appstoreconnect.apple.com/apps/${adamId}/testflight/screenshots/${feedbackId}`;
         facts.push({
           name: "🌐 View in App Store Connect",
@@ -95,7 +97,7 @@ function buildTeamsMessage(payload) {
         });
       }
 
-      if (adamId && bundleId && platformId) {
+      if (isValidFeedbackId && adamId && bundleId && platformId) {
         const xcodeLink = `xcode://organizer/feedback/downloadFeedback?adamId=${adamId}&feedbackId=${feedbackId}&bundleId=${bundleId}&platformId=${platformId}&userAgent=appStoreConnect`;
         facts.push({
           name: "💻 Open in Xcode Organizer",
