@@ -44,6 +44,7 @@ End-to-end simple installation guides, from installing the proxy to get the test
 **📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Microsoft Teams (Medium)](https://medium.com/p/af3c8c840c15)
 
 ![MS Teams TestFlight Screenshot Notification](documentation/assets/TeamsTestFlightFeedbackScreenshot.png)
+![MS Teams TestFlight Crash Notification](documentation/assets/TeamsTestFlightCrashScreenshot.png)
 
 ### 💬 Slack
 ![Slack Notification Screenshot](documentation/assets/SlackAppStoreUpdateResponse.png)
@@ -51,6 +52,7 @@ End-to-end simple installation guides, from installing the proxy to get the test
 **📘 Step-by-step setup guide**: [Integrate App Store Webhooks with Slack (Medium)](https://medium.com/p/4785b8306c81)
 
 ![Slack TestFlight Screenshot Notification](documentation/assets/SlackTestFlightFeedbackScreenshot.png)
+![Slack TestFlight Crash Notification](documentation/assets/SlackTestFlightCrashScreenshot.png)
 
 ---
 
