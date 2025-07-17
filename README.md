@@ -60,6 +60,7 @@ End-to-end simple installation guides, from installing the proxy to get the test
 - `appStoreVersionAppVersionStateUpdated`
 - `webhookPingCreated`
 - `betaFeedbackScreenshotSubmissionCreated`
+- `betaFeedbackCrashSubmissionCreated`
 
 Unknown events will still be delivered in raw JSON.
 
