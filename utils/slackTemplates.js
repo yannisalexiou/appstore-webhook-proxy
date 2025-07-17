@@ -159,6 +159,57 @@ function buildSlackMessage(payload) {
 
       return { blocks };
     },
+
+    betaFeedbackCrashSubmissionCreated: () => {
+      const crashId = payload.data.relationships?.instance?.data?.id;
+      const timestamp = formatTimestamp(payload.data.attributes.timestamp);
+
+      const adamId = process.env.APP_ADAM_ID;
+
+      const elements = [];
+
+      const isValidCrashId = typeof crashId === "string" && crashId.trim() !== "";
+      if (isValidCrashId && adamId) {
+        const webLink = `https://appstoreconnect.apple.com/apps/${adamId}/testflight/crashes/${crashId}`;
+        elements.push({
+          type: "mrkdwn",
+          text: `🌐 <${webLink}|View in App Store Connect>`,
+        });
+      }
+
+      const blocks = [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "🐞 TestFlight Crash Feedback Submitted",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: `*Crash ID:*\n\`${crashId}\``,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Timestamp:*\n${timestamp}`,
+            },
+          ],
+        },
+      ];
+
+      if (elements.length > 0) {
+        blocks.push({
+          type: "context",
+          elements,
+        });
+      }
+
+      return { blocks };
+    },
   };
 
   const template = events[type]?.() ?? {

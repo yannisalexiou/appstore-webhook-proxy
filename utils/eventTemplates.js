@@ -110,6 +110,39 @@ function buildTeamsMessage(payload) {
         facts,
       };
     },
+
+    betaFeedbackCrashSubmissionCreated: () => {
+      const crashId = payload.data.relationships?.instance?.data?.id;
+      const timestamp = formatTimestamp(payload.data.attributes.timestamp);
+
+      const adamId = process.env.APP_ADAM_ID;
+
+      const facts = [
+        {
+          name: "🆔 Crash ID",
+          value: `\`${crashId}\``,
+        },
+        {
+          name: "⏱️ Timestamp",
+          value: timestamp,
+        },
+      ];
+
+      const isValidCrashId = typeof crashId === "string" && crashId.trim() !== "";
+
+      if (isValidCrashId && adamId) {
+        const webLink = `https://appstoreconnect.apple.com/apps/${adamId}/testflight/crashes/${crashId}`;
+        facts.push({
+          name: "🌐 View in App Store Connect",
+          value: `[Open Link](${webLink})`,
+        });
+      }
+
+      return {
+        title: "🐞 TestFlight Crash Feedback Submitted",
+        facts,
+      };
+    },
   };
 
   const template = events[type]?.() ?? {
