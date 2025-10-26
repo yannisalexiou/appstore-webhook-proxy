@@ -213,8 +213,10 @@ INTERNAL_TEST_TOKEN=super_secret_token
 ```
 
 ⚠️ Important:
+
 Never enable this in production environments.
-The /test/webhook route is only intended for local or QA testing.
+
+The `/test/webhook` route is only intended for local or QA testing.
 
 
 #### 2. Send a test payload
