@@ -130,6 +130,8 @@ Create a `.env` file (or set variables directly in your cloud environment):
 | `APP_ADAM_ID`        | *(Optional – Used for TestFlight feedback).* The App Store Connect "adamId" of your app. Required to generate links to App Store Connect and Xcode Organizer in TestFlight screenshot feedback messages. | *(empty)*     |
 | `APP_BUNDLE_ID`      | *(Optional – Used for TestFlight feedback).* The bundle identifier of your app (e.g. `com.company.app`). Required to generate Xcode Organizer links for TestFlight screenshot feedback. | *(empty)*     |
 | `APP_PLATFORM_ID`    | *(Optional – Used for TestFlight feedback).* The App Store Connect platform ID (e.g. `iOS`). Required to generate Xcode Organizer links for TestFlight screenshot feedback. | *(empty)*     |
+| `ENABLE_TEST_ENDPOINT` | *(Optional – For local testing only).* When set to `true`, enables the internal `/test/webhook` route that allows you to manually POST Apple-style webhook payloads to simulate real events. This endpoint is disabled by default and should **never be enabled in production**.                                                                                                                                        | `false`       |
+| `INTERNAL_TEST_TOKEN`  | *(Optional – Recommended when testing).* Security token required via the `x-internal-token` HTTP header when calling `/test/webhook`. Helps prevent unauthorized access to the test endpoint. Ignored if `ENABLE_TEST_ENDPOINT` is `false`.                                                                                                                                                                              | *(empty)*     |
 
 
 
