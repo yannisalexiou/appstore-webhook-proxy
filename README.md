@@ -61,6 +61,8 @@ End-to-end simple installation guides, from installing the proxy to get the test
 - `webhookPingCreated`
 - `betaFeedbackScreenshotSubmissionCreated`
 - `betaFeedbackCrashSubmissionCreated`
+- `buildUploadStateUpdated`
+- `buildBetaDetailExternalBuildStateUpdated`
 
 Unknown events will still be delivered in raw JSON.
 
