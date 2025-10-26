@@ -3,6 +3,10 @@
 const {
   getAppStoreStatusLabel,
   getStatusEmoji,
+  getBuildUploadStateLabel,
+  getBuildUploadStateEmoji,
+  getExternalBuildStateLabel,
+  getExternalBuildStateEmoji,
 } = require("./stateDescriptions");
 
 const { DateTime } = require("luxon");
@@ -143,6 +147,68 @@ function buildTeamsMessage(payload) {
         facts,
       };
     },
+
+    buildUploadStateUpdated: () => {
+      const newState = payload.data.attributes?.newState;
+      const oldState = payload.data.attributes?.oldState;
+      const uploadId = payload.data.relationships?.instance?.data?.id;
+
+      const facts = [
+        {
+          name: `${getBuildUploadStateEmoji(newState)} Current State`,
+          value: `**${getBuildUploadStateLabel(newState)}**`,
+        },
+        {
+          name: "Previous State",
+          value: `${getBuildUploadStateLabel(oldState)}`,
+        },
+        {
+          name: "🆔 Upload ID",
+          value: `\`${uploadId}\``,
+        },
+        {
+          name: "⏱️ Timestamp",
+          value: timestamp,
+        },
+      ];
+
+      return {
+        title: "⬆️ App Store Build Upload Processed",
+        facts,
+      };
+    },
+
+    buildBetaDetailExternalBuildStateUpdated: () => {
+      const externalState =
+        payload.data.attributes?.newExternalBuildState;
+      const buildBetaDetailsId =
+        payload.data.relationships?.instance?.data?.id;
+
+      const eventTimestampIso = payload.data.attributes?.timestamp;
+      const readableTs = formatTimestamp(eventTimestampIso || rawTimestamp);
+
+      const facts = [
+        {
+          name: `${getExternalBuildStateEmoji(externalState)} External Status`,
+          value: `**${getExternalBuildStateLabel(externalState)}**`,
+        },
+        {
+          name: "🆔 Build Detail ID",
+          value: `\`${buildBetaDetailsId}\``,
+        },
+        {
+          name: "⏱️ Timestamp",
+          value: readableTs,
+        },
+      ];
+
+      return {
+        title: "📣 TestFlight External Availability Updated",
+        facts,
+      };
+    },
+
+
   };
 
   const template = events[type]?.() ?? {

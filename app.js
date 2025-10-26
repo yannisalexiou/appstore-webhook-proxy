@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require("express");
 const bodyParser = require("body-parser");
 const webhookRouter = require("./routes/webhook");
+const testWebhookRouter = require("./routes/testWebhook");
 const { logRequests } = require("./middleware/logging");
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -24,6 +25,11 @@ app.use(
 app.use(logRequests);
 
 app.get("/health", (req, res) => res.status(200).send("OK"));
+
+// ✅ Optional testing endpoint (only if enabled)
+if (process.env.ENABLE_TEST_ENDPOINT === "true") {
+  app.use("/test/webhook", testWebhookRouter);
+}
 
 // Attach router with timestamp formatting responsibility delegated inside
 app.use("/appstore-webhook", webhookRouter);

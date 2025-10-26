@@ -1,6 +1,10 @@
 const {
   getAppStoreStatusLabel,
   getStatusEmoji,
+  getBuildUploadStateLabel,
+  getBuildUploadStateEmoji,
+  getExternalBuildStateLabel,
+  getExternalBuildStateEmoji,
 } = require("./stateDescriptions");
 
 const { DateTime } = require("luxon");
@@ -210,6 +214,94 @@ function buildSlackMessage(payload) {
 
       return { blocks };
     },
+
+    buildUploadStateUpdated: () => {
+      const newState = payload.data.attributes?.newState;
+      const oldState = payload.data.attributes?.oldState;
+      const uploadId = payload.data.relationships?.instance?.data?.id;
+
+      // This event has no timestamp -> fallback to "now" (we already do that above)
+      // timestamp var is already computed using rawTimestamp fallback
+
+      const blocks = [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "⬆️ App Store Build Upload Processed",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: `*${getBuildUploadStateEmoji(newState)} Current State:*\n${getBuildUploadStateLabel(newState)}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Previous State:*\n${getBuildUploadStateLabel(oldState)}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Upload ID:*\n\`${uploadId}\``,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Timestamp:*\n${timestamp}`,
+            },
+          ],
+        },
+      ];
+
+      return { blocks };
+    },
+
+    buildBetaDetailExternalBuildStateUpdated: () => {
+      const externalState =
+        payload.data.attributes?.newExternalBuildState;
+      const buildBetaDetailsId =
+        payload.data.relationships?.instance?.data?.id;
+
+      const eventTimestampIso = payload.data.attributes?.timestamp;
+      const eventTimestamp = formatTimestamp(eventTimestampIso || rawTimestamp);
+
+      const blocks = [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "📣 TestFlight External Availability Updated",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: `*${getExternalBuildStateEmoji(externalState)} External Status:*\n${getExternalBuildStateLabel(externalState)}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Build Detail ID:*\n\`${buildBetaDetailsId}\``,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Timestamp:*\n${eventTimestamp}`,
+            },
+          ],
+        },
+      ];
+
+      // Optional deep links (only if you want)
+      // If you know adamId, you COULD build a link to that specific build in TestFlight QA dashboard,
+      // but Apple doesn't give the build number or train here, so we skip to avoid broken links.
+
+      return { blocks };
+    },
+
   };
 
   const template = events[type]?.() ?? {

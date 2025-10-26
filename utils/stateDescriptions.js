@@ -48,7 +48,54 @@ function getStatusEmoji(code) {
   return statusEmojis[code] || "📦";
 }
 
+const buildUploadStateLabels = {
+  PROCESSING: "Processing upload",
+  COMPLETE: "Upload complete",
+};
+
+const buildUploadStateEmojis = {
+  PROCESSING: "⚙️",
+  COMPLETE: "✅",
+};
+
+function getBuildUploadStateLabel(code) {
+  return buildUploadStateLabels[code] || code;
+}
+
+function getBuildUploadStateEmoji(code) {
+  return buildUploadStateEmojis[code] || "📦";
+}
+
+// External TestFlight build state (for buildBetaDetailExternalBuildStateUpdated)
+const externalBuildStateLabels = {
+  READY_FOR_BETA_TESTING: "Ready for external testers",
+  IN_BETA_TESTING: "Available to testers",
+  EXPIRED: "Build expired",
+  PROCESSING: "Processing for TestFlight review",
+  INTERNAL_ONLY: "Internal testing only",
+};
+
+const externalBuildStateEmojis = {
+  READY_FOR_BETA_TESTING: "📣",
+  IN_BETA_TESTING: "🧪",
+  EXPIRED: "⌛",
+  PROCESSING: "🔄",
+  INTERNAL_ONLY: "🔒",
+};
+
+function getExternalBuildStateLabel(code) {
+  return externalBuildStateLabels[code] || code;
+}
+
+function getExternalBuildStateEmoji(code) {
+  return externalBuildStateEmojis[code] || "📦";
+}
+
 module.exports = {
   getAppStoreStatusLabel,
   getStatusEmoji,
+  getBuildUploadStateLabel,
+  getBuildUploadStateEmoji,
+  getExternalBuildStateLabel,
+  getExternalBuildStateEmoji,
 };
