@@ -199,6 +199,70 @@ PRs and feedback welcome! You can help with:
 - Custom Slack/Teams formatting
 - Delivery logs and retry support
 
+### 🧪 Testing Locally
+
+When developing or validating new webhook event types, you can simulate Apple webhook deliveries using the internal **test endpoint**.
+
+#### 1. Enable the test endpoint
+
+In your local `.env` file, add:
+
+```bash
+ENABLE_TEST_ENDPOINT=true
+INTERNAL_TEST_TOKEN=super_secret_token
+```
+
+⚠️ Important:
+Never enable this in production environments.
+The /test/webhook route is only intended for local or QA testing.
+
+
+#### 2. Send a test payload
+```
+curl -X POST http://localhost:3000/test/webhook \
+  -H "Content-Type: application/json" \
+  -H "x-internal-token: super-secret-token" \
+  -d '{
+    "data": {
+      "type": "buildUploadStateUpdated",
+      "id": "1239d9f7-12b5-4456-8859-12b04e6e8445",
+      "version": 1,
+      "attributes": { "oldState": "PROCESSING", "newState": "COMPLETE" },
+      "relationships": {
+        "instance": {
+          "data": { "type": "buildUploads", "id": "1239d9f7-12b5-4456-8859-12b04e6e8445" },
+          "links": { "self": "https://api.appstoreconnect.apple.com/v1/buildUploads/1239d9f7-12b5-4456-8859-12b04e6e8445" }
+        }
+      }
+    }
+  }'
+```
+
+#### 4, Verify output
+
+If configured correctly:
+- You’ll see messages in Slack and/or Microsoft Teams.
+- The terminal will log something like: `🧪 Simulating Apple event: buildUploadStateUpdated`
+- The HTTP response will confirm what was sent:
+```
+{
+    "ok": true,
+    "receivedType": "buildUploadStateUpdated",
+    "results": {
+        "slack": "sent",
+        "teams": "sent"
+    }
+}
+```
+
+#### 5. Disable after testing
+Remove or comment out these lines in .env when done:
+```
+# ENABLE_TEST_ENDPOINT=true
+# INTERNAL_TEST_TOKEN=super-secret-token
+```
+This ensures the testing route is not exposed in production deployments.
+
 ---
 
 ## 📝 License
