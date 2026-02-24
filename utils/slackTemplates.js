@@ -1,6 +1,5 @@
 const {
   getAppStoreStatusLabel,
-  getStatusEmoji,
   getBuildUploadStateLabel,
   getBuildUploadStateEmoji,
   getExternalBuildStateLabel,
@@ -27,48 +26,79 @@ function buildSlackMessage(payload) {
     appStoreVersionAppVersionStateUpdated: () => {
       const newValue = payload.data.attributes.newValue;
       const oldValue = payload.data.attributes.oldValue;
-      const versionId = payload?.data?.relationships?.instance?.data?.id;
 
       let blocks = [
         {
           type: "header",
           text: {
             type: "plain_text",
-            text: "🚀 App Version Status Updated",
+            text: ":apple: App Store update",
             emoji: true,
           },
         },
         {
-          type: "section",
-          fields: [
+          type: "rich_text",
+          elements: [
             {
-              type: "mrkdwn",
-              text: `*${getStatusEmoji(newValue)} Current Status:*\n${getAppStoreStatusLabel(newValue)}`,
+              type: "rich_text_section",
+              elements: [
+                {
+                  type: "text",
+                  text: "New status: ",
+                  style: {
+                    bold: true,
+                  },
+                },
+                {
+                  type: "text",
+                  text: getAppStoreStatusLabel(newValue),
+                },
+              ],
             },
+          ],
+        },
+        {
+          type: "rich_text",
+          elements: [
             {
-              type: "mrkdwn",
-              text: `*Previous Status:*\n${getAppStoreStatusLabel(oldValue)}`,
-            },
-            {
-              type: "mrkdwn",
-              text: `*Timestamp:*\n${timestamp}`,
-            },
-            {
-              type: "mrkdwn",
-              text: `*Version ID:*\n${versionId}`,
+              type: "rich_text_section",
+              elements: [
+                {
+                  type: "text",
+                  text: `Previously: ${getAppStoreStatusLabel(oldValue)}`,
+                  style: {
+                    italic: true,
+                  },
+                },
+              ],
             },
           ],
         },
       ];
 
       if (APP_STORE_URL) {
-        blocks.push({
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: `<${APP_STORE_URL}|🔗 View on App Store>`,
+        blocks.push(
+          {
+            type: "divider",
           },
-        });
+          {
+            type: "section",
+            text: {
+              type: "mrkdwn",
+              text: "View on App Store",
+            },
+            accessory: {
+              type: "button",
+              text: {
+                type: "plain_text",
+                text: ":arrow_right:",
+                emoji: true,
+              },
+              url: APP_STORE_URL,
+              action_id: "view-app-store",
+            },
+          },
+        );
       }
 
       return { blocks };
